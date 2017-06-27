@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script>
+    function add(){
+    var inputTitle = document.getElementById('title').value;
+    var inputContent = document.getElementById('content').value;
+    var json = {
+        title: "",
+        content: ""
+    };
+    json.title = inputTitle;
+    json.content = inputContent;
+console.log(json);
+doPut('/put',json);
+}
+
+function doPut(url,json){
+    $.ajax({
+        method: 'PUT',
+        url: url,
+        headers: {
+            'Content-Type':'application/json'
+        },
+        data: JSON.stringify(json)
+    });
+}
+
+</script>
+</head>
+
+<body>
+    <div>
+        <label>Title</label>
+        <input type='text' name='title' id='title'><br>
+    </div>
+    <div>
+        <label>Content</label>
+        <input type='text' name='title' id='content'><br>
+    </div><br>
+    <button type="button" onclick="add()">Save</button>
+</body>
+
+</html>
